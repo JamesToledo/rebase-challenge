@@ -11,7 +11,12 @@ class Server < Sinatra::Base
   set :port, 3000
 
   get '/tests' do
-    Exams.all.to_json
+    Exams.all.to_json(except: %i[id updated_at created_at])
+  end
+
+  get '/tests/:exam_result_token' do
+    data = Exams.where('exam_result_token = ?', params[:exam_result_token])
+    Exams.show(data)
   end
 
   post '/import' do

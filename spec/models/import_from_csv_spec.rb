@@ -8,7 +8,7 @@ describe 'Import csv data to database' do
     data = Exams.extract_csv('spec/support/test.csv')
     Exams.import_to_database(data)
 
-    expect(Exams.count).to eq 2
+    expect(Exams.count).to eq 3
     expect(Exams.first.exam_result).to eq 97
   end
 end
