@@ -6,7 +6,7 @@
 http://localhost:3000/import
 ```
 
-## Acesse em seu navegador
+## Para visualizar dados enviados
 
-**Para visualizar dados enviados**
+**Acesse em seu navegador**
 <http://localhost:3000/tests>
