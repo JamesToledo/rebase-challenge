@@ -3,7 +3,9 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack/handler/puma'
-require_relative './sidekiq/import_csv_job'
+require_relative '../app/sidekiq/import_csv_job'
+require_relative '../app/controllers/exams_controller'
+require_relative '../app/services/extract_csv_service'
 
 class Server < Sinatra::Base
   set :logging, true
@@ -11,16 +13,15 @@ class Server < Sinatra::Base
   set :port, 3000
 
   get '/tests' do
-    Exams.all.to_json(except: %i[id updated_at created_at])
+    ExamsController.index
   end
 
   get '/tests/:exam_result_token' do
-    data = Exams.where('exam_result_token = ?', params[:exam_result_token])
-    Exams.show(data)
+    ExamsController.show(params[:exam_result_token])
   end
 
   post '/import' do
-    data = Exams.extract_csv(params[:csv][:tempfile])
+    data = ExtractCsvService.extract(params[:csv][:tempfile])
 
     ImportCsvJob.perform_async(data)
 

@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require_relative '../../app/server'
+require_relative '../../app/controllers/exams_controller'
+require_relative '../../config/routes'
 
 RSpec.describe 'server', type: :request do
   describe 'GET /tests/:token' do
     let(:app) { Server.new }
 
     it 'Receive response successfully' do
-      data = Exams.extract_csv('spec/support/test.csv')
-      Exams.import_to_database(data)
+      data = ExtractCsvService.extract('spec/support/test.csv')
+      ExamsController.import_to_database(data)
 
       object = {
         'exam_result_token': 'IQCZ17',

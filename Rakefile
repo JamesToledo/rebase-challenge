@@ -4,6 +4,6 @@ require 'sinatra/activerecord/rake'
 
 namespace :db do
   task :load_config do
-    require './app/import_from_csv'
+    require './app/models/exams'
   end
 end
