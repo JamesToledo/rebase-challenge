@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: postgres_development
+  database: rebase-challenge_development
 
 test:
   <<: *default
-  database: postgres_test
+  database: rebase-challenge_test
 
 production:
   <<: *default
-  database: postgres_production
+  database: rebase-challenge_production
