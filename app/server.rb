@@ -10,6 +10,10 @@ class Server < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, 3000
 
+  get '/tests' do
+    Exams.all.to_json
+  end
+
   post '/import' do
     data = Exams.extract_csv(params[:csv][:tempfile])
 
