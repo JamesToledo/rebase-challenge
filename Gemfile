@@ -9,6 +9,8 @@ gem 'pg'
 gem 'puma'
 gem 'rack'
 gem 'rake'
+gem 'redis'
+gem 'sidekiq'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 
