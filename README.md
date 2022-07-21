@@ -44,7 +44,7 @@ docker run --rm -p 3000:3000 \
   -v $(pwd):/rebase-challenge -w /rebase-challenge \
   ruby:3.1.0 \
   bash -c 'bundle && bundle exec rake db:create \
-  db:migrate && ruby app/server.rb'
+  db:migrate && ruby ./config/routes.rb'
 ```
 
 **Para rodar os testes substitua o comando acima pelo seguinte:**
