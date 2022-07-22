@@ -2,6 +2,8 @@
 
 Este projeto está em desenvolvimento. Trata-se de uma API em Ruby para listagem de exames médicos.
 
+Para fins de teste há um [arquivo](data.csv) csv disponível na aplicação.
+
 - Veja os endpoints [aqui](api_doc.md)
 
 ## Dependências do sistema
