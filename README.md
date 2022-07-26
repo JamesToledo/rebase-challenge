@@ -25,6 +25,10 @@ bundle install
 ```
 
 ```text
+docker network create server
+```
+
+```text
 docker run --rm -d --name pg-docker --network server \
   -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres
 ```
@@ -41,23 +45,20 @@ docker run --rm -d --name sidekiq --network server \
 ```
 
 ```text
-docker run --rm -p 3000:3000 \
-  --name app --network server \
-  -v $(pwd):/rebase-challenge -w /rebase-challenge \
-  ruby:3.1.0 \
-  bash -c 'bundle && bundle exec rake db:create \
-  db:migrate && ruby ./config/routes.rb'
+docker run --rm --name app --network server \
+  -v gems:/usr/local/bundle -v $(pwd):/rebase-challenge \
+  -w /rebase-challenge -p 3000:3000 \
+  ruby:3.1.0 bash -c 'bundle && bundle exec rake db:create \
+  db:migrate && bash && ruby ./config/routes.rb'
 ```
 
 **Para rodar os testes substitua o comando acima pelo seguinte:**
 
 ```text
-docker run -it --rm -p 3000:3000 \
-  --name app --network server \
-  -v $(pwd):/rebase-challenge -w /rebase-challenge \
-  ruby:3.1.0 \
-  bash -c 'bundle && bundle exec rake db:create \
-  db:migrate && bash'
+docker run -it --rm --name app --network server \
+  -v gems:/usr/local/bundle -v $(pwd):/rebase-challenge \
+  -w /rebase-challenge -p 3000:3000 ruby:3.1.0 \
+  bash -c 'bundle && bundle exec rake db:create db:migrate && bash'
 ```
 
 **Em seguida:**

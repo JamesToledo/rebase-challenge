@@ -2,6 +2,8 @@
 
 ## Envie seu arquivo csv para
 
+OBS: É esperado que seja enviado com a key csv.
+
 ```text
 http://localhost:3000/import
 ```
@@ -42,4 +44,3 @@ http://localhost:3000/tests/:token
 - Response:
 
 ![Screenshot_20220722_095721](https://user-images.githubusercontent.com/65865942/180450614-876f73b6-6e78-4dd5-8476-f0ee898938ea.png)
-
